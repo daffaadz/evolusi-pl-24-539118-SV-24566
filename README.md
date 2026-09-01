@@ -1,58 +1,134 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Konstruksi dan Evolusi Perangkat Lunak
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Proyek ini merupakan bagian dari tugas pembelajaran mata kuliah **Konstruksi dan Evolusi Perangkat Lunak**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tech Stack
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Framework**: [Laravel 13](https://laravel.com/) (PHP 8.3+)
+- **Build**: [Vite](https://vite.dev/) & [Laravel Vite Plugin](https://laravel.com/docs/vite)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Testing**: [PHPUnit](https://phpunit.de/)
+- **Code Formatter / Linter**: [Laravel Pint](https://laravel.com/docs/pint)
+- **CI/CD**: [GitHub Actions](https://github.com/features/actions)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Getting Started
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Must have
+- [PHP](https://www.php.net/) (versi 8.3 ke atas)
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/) (versi 18 ke atas)
+- [npm](https://www.npmjs.com/)
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Instalasi & Running Apps
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+1. **Clone repositori**:
+   ```bash
+   git clone <URL_REPOSITORY>
+   cd laravel-app
+   ```
 
-## Agentic Development
+2. **Install dependensi**:
+   ```bash
+   composer install
+   npm install
+   ```
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+3. **Konfigurasi Environment**:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-```bash
-composer require laravel/boost --dev
+4. **Jalankan Migrasi Database**:
+   ```bash
+   php artisan migrate
+   ```
 
-php artisan boost:install
+5. **Jalankan development**:
+   ```bash
+   composer run dev
+   ```
+   *Atau jalankan secara terpisah:*
+   ```bash
+   php artisan serve
+   npm run dev
+   ```
+   Buka browser di `http://localhost:8000`.
+
+---
+
+## Scripts
+
+Di dalam direktori project, kamu dapat menggunakan beberapa skrip berikut:
+
+| Perintah | Deskripsi |
+| --- | --- |
+| `composer run dev` | Menjalankan server Laravel, queue worker, logs, dan Vite secara bersamaan |
+| `php artisan serve` | Menjalankan server pengembangan lokal Laravel |
+| `npm run dev` | Menjalankan server pengembangan lokal Vite dengan Hot Module Replacement (HMR) |
+| `npm run build` | Melakukan kompilasi dan optimasi bundle untuk produksi |
+| `php artisan test` | Menjalankan unit & feature test secara otomatis menggunakan PHPUnit |
+| `./vendor/bin/pint` | Memeriksa dan memformat standar kode PHP menggunakan Laravel Pint |
+
+---
+
+## Struktur Direktori
+
+```text
+laravel-app/
+├── .github/
+│   └── workflows/
+│       └── ci.yml             # Workflow GitHub Actions
+├── app/                       # Logika inti aplikasi (Models, Controllers, Providers)
+├── bootstrap/                 # Inisialisasi dan konfigurasi framework Laravel
+├── config/                    # File konfigurasi aplikasi
+├── database/                  # Skema database, migrasi, factories, dan seeders
+│   ├── factories/
+│   ├── migrations/
+│   └── seeders/
+├── public/                    # Entry point aplikasi (index.php) dan aset statis publik
+├── resources/                 # Sumber daya frontend (Views Blade, CSS, JS)
+│   ├── css/                   # Stylesheet & konfigurasi Tailwind CSS
+│   ├── js/                    # Script frontend
+│   └── views/                 # Template Blade
+├── routes/                    # Definisi rute aplikasi (web.php, console.php)
+├── storage/                   # File log, cache, dan berkas terkompilasi
+├── tests/                     # Berkas pengujian otomatis (Feature & Unit tests)
+│   ├── Feature/
+│   └── Unit/
+├── .env.example               # Contoh konfigurasi environment
+├── artisan                    # CLI executable Laravel
+├── composer.json              # Daftar dependensi PHP & script Composer
+├── package.json               # Daftar dependensi & script npm
+├── phpunit.xml                # Konfigurasi pengujian PHPUnit
+├── vite.config.js             # Konfigurasi Vite & Tailwind CSS plugin
+└── README.md                  # Dokumentasi proyek
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## Conventional Git Commits
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Proyek ini menerapkan standar **Conventional Commits** untuk menjaga message git tetap terstruktur dan informatif:
 
-## Code of Conduct
+- `feat:` Menambahkan fitur baru bagi pengguna (contoh: `feat(auth): add login functionality`)
+- `fix:` Memperbaiki bug atau kesalahan fungsi (contoh: `fix(auth): prevent invalid credentials submission`)
+- `docs:` Perubahan atau penambahan dokumentasi (contoh: `docs: update setup guide in readme`)
+- `chore:` Perubahan build tooling, konfigurasi, atau dependensi (contoh: `chore(deps): update composer dependencies`)
+- `test:` Penambahan atau perbaikan unit/feature test (contoh: `test(auth): add unit test for user registration`)
+- `ci:` Konfigurasi workflow atau otomasi CI/CD (contoh: `ci: add github actions test workflow`)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## Alur CI/CD (Continuous Integration)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Setiap *push* atau *pull request* yang dilakukan ke branch `main` akan secara otomatis memicu pipeline **GitHub Actions** berikut:
+1. Menyiapkan environment PHP dan Node.js.
+2. Menginstall dependensi (`composer install` & `npm ci`).
+3. Menjalankan seluruh Unit/Feature Tests (`php artisan test`).
+4. Memeriksa kesesuaian format kode (`./vendor/bin/pint --test`).
+5. Memvalidasi bahwa aplikasi/aset dapat di-build dengan sukses (`npm run build`).
